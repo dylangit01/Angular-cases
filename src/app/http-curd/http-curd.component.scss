@@ -1,0 +1,20 @@
+//
+//li {
+//  display: flex;
+//  justify-content: space-between;
+//  align-items: center;
+//}
+
+
+li {
+  display: grid;
+  grid-gap: 0 500px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  align-items: center;
+}
+
+.editBtn {
+  display:grid;
+  grid-template-columns: repeat(1, 2fr);
+  justify-items: end;
+}

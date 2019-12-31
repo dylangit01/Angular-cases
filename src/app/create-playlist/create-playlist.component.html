@@ -1,0 +1,178 @@
+<form #playlistForm="ngForm" (ngSubmit)="saveNewPlaylistServer()">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">Create Playlist</h3>
+    </div>
+    <div class="panel-body">
+
+      <div class="form-group" [class.has-error]="artist.invalid && artist.touched"
+           [class.has-success]="artist.valid">
+        <!-- input id is used in label element to focus it, and name attributes are used for [(ngModel)]-->
+        <label for="artist" class="control-label">Artist</label>
+        <input required id="artist" name="artist" [(ngModel)]="newPlaylist.artist"
+               type="text" class="form-control" #artist="ngModel"> <!--template variable-->
+        <span class="help-block" *ngIf="artist.invalid && artist.touched">
+                Artist field is required
+        </span>
+      </div>
+
+      <div class="form-group" [class.has-error]="track.invalid && track.touched"
+           [class.has-success]="track.valid">
+        <label for="track" class="control-label">Track</label>
+        <input required id="track" name="track" [(ngModel)]="newPlaylist.track"
+               type="text" class="form-control" #track='ngModel'>
+        <span class="help-block" *ngIf="track.invalid && track.touched">
+          Track field is required
+        </span>
+      </div>
+
+      <div class="form-group" [class.has-error]="listened.invalid && listened.touched">
+        <label class="control-label">Listened</label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" required #listened='ngModel'
+                   value="true" name="listened" [(ngModel)]="newPlaylist.listened"> True
+          </label>
+          <label class="radio-inline">
+            <input type="radio" required #listened='ngModel'
+                   value="false" name="listened" [(ngModel)]="newPlaylist.listened"> False
+          </label>
+        </div>
+        <span class="help-block" *ngIf="listened.invalid && listened.touched">
+          Listened of Song is required
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label>Favourite </label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" value="true" name="favourite" [(ngModel)]="newPlaylist.favourite"> True
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="false" name="favourite" [(ngModel)]="newPlaylist.favourite"> False
+          </label>
+        </div>
+      </div>
+
+      <!--            <div class="form-group">-->
+      <!--              <div class="form-control">-->
+      <!--                <label class="checkbox-inline">-->
+      <!--                  <input type="checkbox" name="isActive" [(ngModel)]="isActive"> Is Active-->
+      <!--                </label>-->
+      <!--              </div>-->
+      <!--            </div>-->
+
+      <div class="form-group" [class.has-error]="songStyle.invalid && songStyle.touched">
+        <label for="songStyle" class="control-label">
+          Song Style
+        </label>
+        <select id="songStyle" appSelectValidator="-1000000000001" name="songStyle" #songStyle='ngModel'
+                [(ngModel)]="newPlaylist.songStyle" class="form-control">
+          <option value="-1000000000001">Select song style</option>
+          <!--set default option view to this option. And "value" is for string, "ngValue" is for null or other type-->
+          <option *ngFor="let styles of songStyles" [value]="styles.id">
+            <!--注意：这里的ngFor循环里的列表名字不能和newPlayList里的songStyle名字一样，不然会出错-->
+            {{styles.name}}
+          </option>
+        </select>
+        <span class="help-block" *ngIf="songStyle.invalid && songStyle.errors?.defaultSelected">
+            Song Style is required
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label for="photoPath">Photo Path</label>
+        <input id="photoPath" name="photoPath" [(ngModel)]="newPlaylist.photoPath"
+               type="text" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
+          {{previewPhoto ? "Hide " : "Show "}} Preview
+        </button>
+      </div>
+
+      <div class="form-group">
+        <img [src]="newPlaylist.photoPath" height="200" width="200" *ngIf="previewPhoto">
+      </div>
+
+      <!--ngModelGroup for passwordGroup validation; the 1st way to achieve-->
+<!--      <div ngModelGroup="passwordGroup"-->
+<!--           [class.has-error]="confirmPassword.touched && confirmPassword.invalid-->
+<!--           && ! confirmPassword.errors?.required" >-->
+<!--        &lt;!&ndash; touched means if you have filled any into this field,-->
+<!--              invalid means if you do not input anything into this field,-->
+<!--              and errors?.required means if this compare validation has error or not,-->
+<!--              so if we dont want the password field shows the same red board when compare validation fails,-->
+<!--              you can "!confirmPassword.error?.required", it means whenever the validation fails,-->
+<!--              it only applies to confirmPassword field to show the red board error&ndash;&gt;-->
+<!--        <div class="form-group" [class.has-error]="password.invalid && password.touched">-->
+<!--          <label for="password" class="control-label">Password</label>-->
+<!--          <input id="password" name="password" required type="text" class="form-control"-->
+<!--                 (change)="confirmPassword.control.updateValueAndValidity()"-->
+<!--                 [(ngModel)]="newPlaylist.password" #password='ngModel'> &lt;!&ndash;我感觉这里用(change)比用(input)好&ndash;&gt;-->
+<!--          <span class="help-block"-->
+<!--                *ngIf="password.touched && password.errors?.required">-->
+<!--          Password is required-->
+<!--        </span>-->
+<!--        </div>-->
+
+<!--        <div class="form-group" [class.has-error]="confirmPassword.invalid && confirmPassword.touched">-->
+<!--          <label for="confirmPassword" class="control-label">Confirm Password</label>-->
+<!--          <input id="confirmPassword" name="confirmPassword" appConfirmEqualValidator="password"-->
+<!--                 required type="text" class="form-control"-->
+<!--                 [(ngModel)]="newPlaylist.confirmPassword" #confirmPassword='ngModel'>-->
+<!--          <span class="help-block"-->
+<!--                *ngIf="confirmPassword.touched && confirmPassword.errors?.required">-->
+<!--          Confirm Password is required-->
+<!--        </span>-->
+<!--          <span class="help-block"-->
+<!--                *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required">-->
+<!--          Password and Confirm Password does not match-->
+<!--        </span>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <!--ngModelGroup for passwordGroup validation; the 2nd way to achieve-->
+      <div ngModelGroup="passwordGroup" appConfirmEqualValidator #passwordGroup="ngModelGroup"
+           [class.has-error]="passwordGroup.errors?.notEqual && ! passwordGroup.errors?.required" >
+        <div class="form-group" [class.has-error]="password.invalid && password.touched">
+          <label for="password" class="control-label">Password</label>
+          <input id="password" name="password" required type="text" class="form-control"
+                 [(ngModel)]="newPlaylist.password" #password='ngModel'> <!--我感觉这里用(change)比用(input)好-->
+          <span class="help-block"
+                *ngIf="password.touched && password.errors?.required">
+          Password is required
+        </span>
+        </div>
+
+        <div class="form-group" [class.has-error]="confirmPassword.invalid && confirmPassword.touched">
+          <label for="confirmPassword" class="control-label">Confirm Password</label>
+          <input id="confirmPassword" name="confirmPassword" required type="text" class="form-control"
+                 [(ngModel)]="newPlaylist.confirmPassword" #confirmPassword='ngModel'>
+          <span class="help-block"
+                *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
+          Confirm Password is required
+        </span>
+          <span class="help-block"
+                *ngIf="confirmPassword.touched && passwordGroup.errors?.notEqual && !confirmPassword.errors?.required">
+          Password and Confirm Password does not match
+        </span>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+  <div class="panel-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="playlistForm.invalid">Save</button>
+  </div>
+</form>
+
+Angular Generated Form Model: {{playlistForm.value | json}}
+<br>
+PlayList Model: {{newPlaylist | json}}

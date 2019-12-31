@@ -1,0 +1,49 @@
+{
+  "employee": [
+    {
+      "id": 1,
+      "last name": "John",
+      "first name": "Mark",
+      "gender": "Male",
+      "company": "Loblaw",
+      "department": "IT",
+      "email": "mark@2win.com",
+      "phone": "6474109988",
+      "dateOfBirth": "10/25/1988",
+      "address": "345 Toronto Road",
+      "photoPath": "assets/images/1.jpg",
+      "other-info": null,
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "last name": "Sue",
+      "first name": "Lisa",
+      "gender": "Female",
+      "company": "Wal-mart",
+      "department": "HR",
+      "email": "Suel@123.com",
+      "phone": "6474233847",
+      "dateOfBirth": "02/18/1990",
+      "address": "293 Mississauga Road",
+      "photoPath": "assets/images/2.jpg",
+      "other-info": null,
+      "isActive": false
+    },
+    {
+      "id": 3,
+      "last name": "Du",
+      "first name": "Liweng",
+      "gender": "Male",
+      "company": "Google",
+      "department": "IT",
+      "email": "Dyson2@gmail.com",
+      "phone": "6475227878",
+      "dateOfBirth": "11/28/1984",
+      "address": "888 Mississauga Road",
+      "photoPath": "assets/images/3.jpg",
+      "other-info": null,
+      "isActive": true
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+<div class="container">
+  <br>
+
+  <div>
+    <!-- 如何根据ID拿到对应某一个list的信息 <input type="text" [(ngModel)]="playID" placeholder="Input ID">-->
+    <button (click)="getData()">Get Data</button>
+  </div>
+
+  <h3>PlayList:</h3>
+  <h3>{{errorMsg}}</h3>
+  <!--{{playList | json}}-->
+
+  <div class="container">
+    <ul *ngFor="let item of playList, index as i">
+      <li>ID: {{item.id}}
+        <!--      <input type="text" [(ngModel)]="item.id">-->
+      </li>
+      <li>
+          Artist: {{item.artist}}
+          <input type="text" [(ngModel)]="item.artist">
+      </li>
+      <li>
+        Track: {{item.track}}
+        <input type="text" [(ngModel)]="item.track">
+      </li>
+      <li>
+        Listened: {{item.listened}}
+        <input type="text" [(ngModel)]="item.listened">
+      </li>
+      <li>
+        Favourite: {{item.favourite}}
+        <input type="text" [(ngModel)]="item.favourite">
+      </li>
+      <div class="editBtn">
+        <label>
+          <button (click)="updateChanges(item.id, item.artist, item.track, item.listened, item.favourite)">Save List</button>
+        </label>
+
+        <label>
+          <button (click)="deleteList(item.id)">Delete List</button>
+        </label>
+      </div>
+    </ul>
+
+  </div>
+  <br>
+  <br>
+
+
+  <div>
+    <h3>Delete Song (Caution!!):</h3>
+    <input type="number" [(ngModel)]="deleteID" placeholder="Input ID">
+    <button (click)="deleteList(deleteID)">Delete List</button>
+  </div>
+  <hr>
+
+  <!--Create New Song/////////////////////////////////////////////////////////////////////-->
+  <form #newPlaylist="ngForm" (ngSubmit)="saveCreatedList(newPlaylist)">
+    <div>
+      <h3>Create Playlist:</h3>
+      <div>
+
+        <label style="margin-right: 10px">ID:</label>
+        <input required type="number" name="newID" [(ngModel)]="newSong.id">
+
+
+        <label style="margin-right: 10px">Artist:</label>
+        <input required type="text" name="artist" [(ngModel)]="newSong.artist" #artist="ngModel">
+        <span *ngIf="artist.invalid && artist.touched">Artist field is required.</span>
+
+        <label style="margin-left: 10px; margin-right: 10px">Track:</label>
+        <input required type="text" name="track" [(ngModel)]="newSong.track" #track="ngModel">
+        <span *ngIf="track.invalid && track.touched">Track field is required.</span>
+        <br>
+
+        <label style="width: 100px">Listened: </label>
+        <label>
+          <input type="radio" value="true" [(ngModel)]="newSong.listened" name="listened"> True
+        </label>
+        <label style="margin-left: 20px">
+          <input type="radio" value="false" [(ngModel)]="newSong.listened" name="listened"> False
+        </label>
+
+        <br>
+
+        <label style="width: 100px">Favourite: </label>
+        <label>
+          <input type="radio" value="true" [(ngModel)]="newSong.favourite" name="favourite"> True
+        </label>
+        <label style="margin-left: 20px">
+          <input type="radio" value="false" [(ngModel)]="newSong.favourite" name="favourite"> False
+        </label>
+        <br>
+        <button (click)="createNewlist()" [disabled]="newPlaylist.invalid">Save New Song</button>
+      </div>
+    </div>
+  </form>
+  <!--  {{newPlaylist.value | json }}-->
+  <hr>
+  <!--  searching song////////////////////////////////////////////////////////////////////-->
+  <div>
+    <h3>Search Song</h3>
+    <label>Search By Artist: </label>
+    <input type="text" [(ngModel)]="searchByArtist">
+    <button (click)="searchByArtistF()">Search</button>
+    <br>
+    <label>Search By Track: </label>
+    <input type="text" [(ngModel)]="searchByTrack">
+    <button (click)="searchByTrackF()">Search</button>
+  </div>
+
+  <br>
+<!--  <div *ngIf="searchedSong">-->
+    <h3>Search Result: </h3>
+    <h4 *ngIf="emptySearchResult">No Matching Result</h4>
+    <div *ngFor="let song of searchedSong">
+      <ul>
+        <li>{{song.id}}</li>
+        <input type="text" [(ngModel)]="song.id">
+        <li>{{song.artist}}</li>
+        <input type="text" [(ngModel)]="song.artist">
+        <li>{{song.track}}</li>
+        <input type="text" [(ngModel)]="song.track">
+        <li>{{song.listened}}</li>
+        <input type="text" [(ngModel)]="song.listened">
+        <li>{{song.favourite}}</li>
+        <input type="text" [(ngModel)]="song.favourite">
+      </ul>
+      <button (click)="updateChanges(song.id, song.artist, song.track, song.listened, song.favourite)">Edit</button>
+    </div>
+<!--  </div>-->
+
+
+  <br>
+  <br>
+  <br>
+<!--  <div>-->
+<!--    <h3>Search Song:</h3>-->
+<!--    <input type="text" placeholder="Search by Artist"-->
+<!--           style="width: 200px" [(ngModel)]="searchArtist">-->
+<!--    <br>-->
+<!--    <input type="text" placeholder="Search by Track"-->
+<!--           style="width: 200px" [(ngModel)]="searchTrack">-->
+<!--  </div>-->
+<!--  <br>-->
+<!--  <div>-->
+<!--    <div *ngFor="let searchSong of searchedSonglist">-->
+<!--      <ul>-->
+<!--        <li>{{searchSong.id}}</li>-->
+<!--        <li>{{searchSong.artist}}</li>-->
+<!--        <li>{{searchSong.track}}</li>-->
+<!--        <li>{{searchSong.listened}}</li>-->
+<!--        <li>{{searchSong.favourite}}</li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+

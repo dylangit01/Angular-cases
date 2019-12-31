@@ -1,0 +1,76 @@
+<!--<h1 #h1Variable>                                           &lt;!&ndash;*ngIf="dataFromChild"&ndash;&gt;-->
+<!--                                                           &lt;!&ndash;{{dataFromChild.artist + ': ' + dataFromChild.track}}&ndash;&gt;-->
+<!--</h1>-->
+<div class="form-group">
+  <input type="text" class="form-control" placeholder="Search by Artist" [(ngModel)]="searchTerm">
+</div>
+<div *ngFor="let item of filteredPlaylist">
+  <!--下面这里在引用child 的时候，名字item竟然要一致才可以使这个循环工作！！！-->
+  <!--  <div (click)="h1Variable.innerHTML = childComponent.getItemOfPlaylistData() ">-->
+  <!--  <div (click)="onClick(item.id)" class="pointerCursor">  &lt;!&ndash;this onClick is to display one list detail to new detail component&ndash;&gt;-->
+  <app-playlistchild [item]="item" [searchTerm]="searchTerm" >                    <!--(notify)="handleNotify($event)"-->
+  </app-playlistchild>
+  <!--  </div>-->
+</div>
+
+<!--below codes to achieve the display each one list function-->
+<!--<button (click)="nextPlaylist2()" class="btn btn-primary">-->
+<!--  View Next Playlist-->
+<!--</button>-->
+<!--<br><br>-->
+<!--<app-playlistchild [item]="playlistToDisplay"></app-playlistchild>-->
+
+<!--Original parent codes below!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!--<div class="panel panel-primary" *ngFor="let item of playList">-->
+<!--  <div class="panel-heading">-->
+<!--    <h3 class="panel-title">{{item.artist}}</h3>-->
+<!--  </div>-->
+<!--  <div class="panel-body">-->
+<!--    <div class="col-xs-10">-->
+<!--      <div class="row vertical-align">-->
+<!--        <div class="col-xs-4">-->
+<!--          <img class="imageClass" [src]="item.photoPath" alt="">-->
+<!--        </div>-->
+<!--        <div class="col-xs-8">-->
+
+<!--          <div class="row">-->
+<!--            <div class="col-xs-6">-->
+<!--              Artist-->
+<!--            </div>-->
+<!--            <div class="col-xs-6">-->
+<!--              : {{item.artist}}-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row">-->
+<!--            <div class="col-xs-6">-->
+<!--              Track-->
+<!--            </div>-->
+<!--            <div class="col-xs-6">-->
+<!--              : {{item.track}}-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row">-->
+<!--            <div class="col-xs-6">-->
+<!--              Listened-->
+<!--            </div>-->
+<!--            <div class="col-xs-6">-->
+<!--              : {{item.listened}}-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row">-->
+<!--            <div class="col-xs-6">-->
+<!--              Favourite-->
+<!--            </div>-->
+<!--            <div class="col-xs-6">-->
+<!--              : {{item.favourite}}-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

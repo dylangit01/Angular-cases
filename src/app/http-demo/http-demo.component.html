@@ -1,0 +1,161 @@
+<div class="container">
+  <br>
+
+<!--  <div>-->
+<!--    &lt;!&ndash; 如何根据ID拿到对应某一个list的信息 <input type="text" [(ngModel)]="playID" placeholder="Input ID">&ndash;&gt;-->
+<!--    <button (click)="getData()">Get Data</button>-->
+<!--  </div>-->
+
+  <h2>PlayList:</h2>
+  <h3>{{errorMsg}}</h3>
+  <!--{{playList | json}}-->
+
+  <div class="container">
+    <ul *ngFor="let item of playList, index as i">
+      <li>ID: {{item.id}}
+        <!--      <input type="text" [(ngModel)]="item.id">-->
+      </li>
+      <li>
+        Artist: {{item.artist}}
+        <input type="text" [(ngModel)]="item.artist">
+      </li>
+      <li>
+        Track: {{item.track}}
+        <input type="text" [(ngModel)]="item.track">
+      </li>
+      <li>
+        Listened: {{item.listened}}
+        <input type="text" [(ngModel)]="item.listened">
+      </li>
+      <li>
+        Favourite: {{item.favourite}}
+        <input type="text" [(ngModel)]="item.favourite">
+      </li>
+<!--      <div>-->
+<!--        <label style="margin-right: 100px">-->
+<!--          <button (click)="updateChanges(item.id, item.artist, item.track, item.listened, item.favourite)">Save</button>-->
+<!--        </label>-->
+
+<!--        <label>-->
+<!--          <button (click)="deleteList(item.id)">Delete List</button>-->
+<!--        </label>-->
+<!--      </div>-->
+    </ul>
+
+  </div>
+  <br>
+  <br>
+
+
+<!--  <div>-->
+<!--    <input type="text" [(ngModel)]="deleteID" placeholder="Input ID">-->
+<!--    <button (click)="deleteList(deleteID)">Delete List</button>-->
+<!--  </div>-->
+<!--  <br>-->
+
+
+<!--  create new playlist below:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+<!--  <form #newPlaylist="ngForm" (ngSubmit)="saveCreatedList(newPlaylist)">-->
+<!--    <div>-->
+<!--      <h2>Create Playlist</h2>-->
+<!--      <div>-->
+<!--        <label style="margin-right: 10px">Artist:</label>-->
+<!--        <input required type="text" name="artist" [(ngModel)]="newSong.artist" #artist="ngModel">-->
+<!--&lt;!&ndash;        <span *ngIf="artist.invalid && artist.touched">Artist field is required.</span>&ndash;&gt;-->
+
+<!--        <label style="margin-left: 10px; margin-right: 10px">Track:</label>-->
+<!--        <input required type="text" name="track" [(ngModel)]="newSong.track" #track="ngModel">-->
+<!--&lt;!&ndash;        <span *ngIf="track.invalid && track.touched">Track field is required.</span>&ndash;&gt;-->
+<!--        <br>-->
+
+<!--        <label style="width: 100px">Listened: </label>-->
+<!--        <label>-->
+<!--          <input type="radio" value="true" [(ngModel)]="newSong.listened" name="listened"> True-->
+<!--        </label>-->
+<!--        <label style="margin-left: 20px">-->
+<!--          <input type="radio" value="false" [(ngModel)]="newSong.listened" name="listened"> False-->
+<!--        </label>-->
+
+<!--        <br>-->
+
+<!--        <label style="width: 100px">Favourite: </label>-->
+<!--        <label>-->
+<!--          <input type="radio" value="true" [(ngModel)]="newSong.favourite" name="favourite"> True-->
+<!--        </label>-->
+<!--        <label style="margin-left: 20px">-->
+<!--          <input type="radio" value="false" [(ngModel)]="newSong.favourite" name="favourite"> False-->
+<!--        </label>-->
+<!--        <br>-->
+<!--        <button (click)="createNewlist()" [disabled]="newPlaylist.invalid">Save New Song</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </form>-->
+<!--  {{newPlaylist.value | json }}-->
+
+
+
+
+
+
+
+<!--  old version-->
+  <!--  <br>-->
+  <!--  <form #playlistForm='ngForm' (ngSubmit)="saveCreatedList(playlistForm)">-->
+  <!--    <h3>Create Playlist</h3>-->
+  <!--    <div>-->
+  <!--      &lt;!&ndash;input id is used in label element to focus it, and name attributes are used for [(ngModel)]&ndash;&gt;-->
+  <!--      <label for="artistName">Artist: </label>-->
+  <!--      <br>-->
+  <!--      <input id="artistName" name="artName" [(ngModel)]="artName" type="text">-->
+  <!--    </div>-->
+
+  <!--    <div>-->
+  <!--      <label for="trackName">Track: </label>-->
+  <!--      <br>-->
+  <!--      <input id="trackName" name="trkName" [(ngModel)]="trkName" type="text">-->
+  <!--    </div>-->
+
+  <!--    <div>-->
+  <!--      <label>Listened: </label>-->
+  <!--      <br>-->
+  <!--      <div>-->
+  <!--        <label style="margin-right:30px;">-->
+  <!--          <input type="radio" value="true" name="listened" [(ngModel)]="listened"> True-->
+  <!--        </label>-->
+  <!--        <label>-->
+  <!--          <input type="radio" value="false" name="listened" [(ngModel)]="listened"> False-->
+  <!--        </label>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <!--    <div>-->
+  <!--      <label>FavouriteSong: </label>-->
+  <!--      <br>-->
+  <!--      <div>-->
+  <!--        <label style="margin-right:30px;">-->
+  <!--          <input type="radio" value="true" name="favourite" [(ngModel)]="favourite"> True-->
+  <!--        </label>-->
+  <!--        <label>-->
+  <!--          <input type="radio" value="false" name="favourite" [(ngModel)]="favourite"> False-->
+  <!--        </label>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <!--    <br>-->
+  <!--    <div>-->
+  <!--      <button type="submit">Save</button>-->
+  <!--    </div>-->
+  <!--  </form>-->
+
+  <!--  {{playlistForm.value | json}}-->
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+</div>

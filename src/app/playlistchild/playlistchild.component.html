@@ -1,0 +1,60 @@
+<div class="panel panel-primary">          <!--(click)="handleClick()"-->
+  <div class="panel-heading">
+    <h3 class="panel-title">{{item.artist}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="col-xs-10">
+      <div class="row vertical-align">
+        <div class="col-xs-4">
+          <img class="imageClass" [src]="item.photoPath" alt="">
+        </div>
+        <div class="col-xs-8">
+
+          <div class="row">
+            <div class="col-xs-6">
+              Artist
+            </div>
+            <div class="col-xs-6">
+              : {{item.artist}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">
+              Track
+            </div>
+            <div class="col-xs-6">
+              : {{item.track}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">
+              Listened
+            </div>
+            <div class="col-xs-6">
+              : {{item.listened}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-6">
+              Favourite
+            </div>
+            <div class="col-xs-6">
+              : {{item.favourite}}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="panel-footer">
+    <button class="btn btn-primary" (click)="viewPlaylist()"> View </button>
+    <button class="btn btn-primary" (click)="editPlaylist()"> Edit </button>
+    <button class="btn btn-danger"> Delete </button>
+  </div>
+</div>
